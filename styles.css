@@ -1,0 +1,204 @@
+/* Theme Variables */
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --grid-bg: rgba(255, 255, 255, 0.1);
+    --grid-border: #333333;
+    --x-color: #ff4081;
+    --o-color: #00e5ff;
+    --glass-blur: 10px;
+    --animation-speed: 0.3s;
+    --win-glow: #ffff00;
+}
+
+/* Light Mode */
+body.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --grid-bg: rgba(0, 0, 0, 0.1);
+    --grid-border: #cccccc;
+}
+
+/* Theme-Specific Styles */
+body.glass { background: linear-gradient(135deg, #1e1e1e, #2a2a2a); }
+body.cyberpunk { background: linear-gradient(135deg, #0d0d0d, #1a0033); --x-color: #ff00ff; --o-color: #00ffff; }
+body.cosmic { background: url('https://www.transparenttextures.com/patterns/stardust.png') #000000; }
+
+/* General Styles */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background var(--animation-speed);
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Settings and Inputs */
+.settings, .player-inputs {
+    margin-bottom: 20px;
+}
+
+.settings select, .settings input, .player-inputs input {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background: var(--grid-bg);
+    color: var(--text-color);
+    border: 1px solid var(--grid-border);
+}
+
+.settings button {
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background: var(--grid-bg);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+}
+
+/* Scoreboard */
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Turn Indicator */
+#turn-indicator {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: opacity var(--animation-speed);
+}
+
+/* Timer Bar */
+.timer-bar {
+    width: 100%;
+    height: 5px;
+    background: #444;
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+.timer-bar.active {
+    display: block;
+}
+
+.timer-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: var(--x-color);
+    width: 100%;
+    animation: timer 10s linear forwards;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background: var(--grid-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: 10px;
+    border: 1px solid var(--grid-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: transform var(--animation-speed), box-shadow var(--animation-speed);
+    outline: none;
+}
+
+.cell:hover, .cell:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--grid-border);
+}
+
+.cell.x { color: var(--x-color); }
+.cell.o { color: var(--o-color); }
+.cell.win { 
+    background: var(--win-glow); 
+    animation: pulse 1s infinite; 
+}
+
+/* Animations */
+@keyframes markAppear {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 5px var(--win-glow); }
+    50% { box-shadow: 0 0 20px var(--win-glow); }
+    100% { box-shadow: 0 0 5px var(--win-glow); }
+}
+
+@keyframes timer {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+.cell.marked {
+    animation: markAppear var(--animation-speed);
+}
+
+/* Controls */
+.controls button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--grid-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform var(--animation-speed);
+}
+
+.controls button:hover {
+    transform: scale(1.1);
+}
+
+/* History */
+#history {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(3, 80px);
+    }
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    .settings, .player-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

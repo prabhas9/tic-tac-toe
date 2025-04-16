@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ultimate Tic-Tac-Toe</h1>
+        <div class="settings">
+            <label for="theme">Theme:</label>
+            <select id="theme">
+                <option value="glass">Soft-Glass Morphism</option>
+                <option value="cyberpunk">Cyberpunk Neon</option>
+                <option value="cosmic">Cosmic Classic</option>
+            </select>
+            <label for="mode">Mode:</label>
+            <select id="mode">
+                <option value="two-player">Two Player</option>
+                <option value="single-player">Single Player (AI)</option>
+            </select>
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <label for="timer">Timer (seconds):</label>
+            <input type="number" id="timer" min="5" value="10" disabled>
+            <button id="toggle-timer">Enable Timer</button>
+            <button id="toggle-mode">Toggle Light/Dark</button>
+        </div>
+        <div class="player-inputs">
+            <input type="text" id="player1" placeholder="Player 1 Name">
+            <input type="text" id="player2" placeholder="Player 2 Name">
+        </div>
+        <div class="scoreboard">
+            <span id="score-player1">Player 1: 0</span>
+            <span id="score-draw">Draw: 0</span>
+            <span id="score-player2">Player 2: 0</span>
+        </div>
+        <p id="turn-indicator">Player X's Turn</p>
+        <div class="timer-bar" id="timer-bar"></div>
+        <div class="grid">
+            <div class="cell" data-index="0" tabindex="0"></div>
+            <div class="cell" data-index="1" tabindex="0"></div>
+            <div class="cell" data-index="2" tabindex="0"></div>
+            <div class="cell" data-index="3" tabindex="0"></div>
+            <div class="cell" data-index="4" tabindex="0"></div>
+            <div class="cell" data-index="5" tabindex="0"></div>
+            <div class="cell" data-index="6" tabindex="0"></div>
+            <div class="cell" data-index="7" tabindex="0"></div>
+            <div class="cell" data-index="8" tabindex="0"></div>
+        </div>
+        <div class="controls">
+            <button id="undo">Undo Move</button>
+            <button id="reset">Reset Game</button>
+        </div>
+        <div id="history"></div>
+    </div>
+    <!-- External Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
